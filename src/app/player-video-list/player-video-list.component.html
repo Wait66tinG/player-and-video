@@ -1,0 +1,8 @@
+<div *ngIf="player">
+    <h2>{{player.name}} Video</h2>
+    <div *ngFor = "let video of player.video_list">
+        <p>{{video.title}}</p>
+        <a href="{{video.url}}">视频链接</a>
+        <p>{{video.date}}</p>
+    </div>
+</div>
