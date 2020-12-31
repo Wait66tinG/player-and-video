@@ -1,28 +1,28 @@
 <div class="container">
-
+    <mat-grid-list cols="4" rowHeight="800px">
+        <mat-grid-tile colspan="1">
+            <div class="selectPlayer">
+                <div class="title">
+                    <strong>
+                        <p>Player</p>
+                    </strong>
+                </div>
+                <div class="playerList">
+                    <mat-selection-list [multiple]="false">
+                        <mat-list-option class="listOption" *ngFor="let player of players" (click)="onSelect(player)"
+                            [class.selected]="player === selected">
+                            {{player.name}}
+                        </mat-list-option>
+                    </mat-selection-list>
+                </div>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="3">
+            <div style="height: 100%;width: 100%;">
+                <app-player-video-list [player]="selected"></app-player-video-list>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
 </div>
-<mat-grid-list cols="4" rowHeight="100px">
-    <mat-grid-tile colspan="1">
-        <div class ="selectPlayer">
-            <div class="title">
-                <strong><p>Player</p></strong>
-                
-            </div>
-            <div class="playerList">
-                <mat-selection-list [multiple]="false">
-                    <mat-list-option class ="listOption" *ngFor="let player of players" (click)="onSelect(player)"
-                        [class.selected]="player === selected">
-                        {{player.name}}
-                    </mat-list-option>
-                </mat-selection-list>
-            </div>
-        </div>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="3">
-        <div style="width: 100%;height: 100%;">
-            <app-player-video-list [player]="selected"></app-player-video-list>
-        </div>
-    </mat-grid-tile>
-</mat-grid-list>
 
 <!-- <app-player-video-list [player]="selected"></app-player-video-list> -->

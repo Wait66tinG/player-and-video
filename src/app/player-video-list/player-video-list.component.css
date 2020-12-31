@@ -1,0 +1,27 @@
+.container{
+    padding-top: 25px;
+}
+.playerPicture{
+
+}
+.back{
+    height: 200px;
+    opacity: 0.2;
+}
+.front{
+    background: transparent;
+    position: relative;
+    width: 100%;
+    top: -200px;
+}
+.playername{
+    padding: 6rem 0 5rem 1rem;
+    font-size: 10rem;
+    align-items: center;
+    display: flex;
+}
+table {
+    width: 100%;
+
+  }
+  

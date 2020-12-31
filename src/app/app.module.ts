@@ -14,7 +14,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,9 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatGridListModule,
     MatListModule,
     MatToolbarModule,
+    MatCardModule,
+    MatTableModule,
+    MatAutocompleteModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

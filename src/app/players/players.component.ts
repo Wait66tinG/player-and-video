@@ -1,6 +1,7 @@
+import { SelectionModel } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
-import { PLAYERS } from '../mock-data';
 import { Player } from '../video-data';
+import { VideolistService } from '../videolist.service';
 
 @Component({
   selector: 'app-players',
@@ -8,15 +9,22 @@ import { Player } from '../video-data';
   styleUrls: ['./players.component.css']
 })
 export class PlayersComponent implements OnInit {
-  players = PLAYERS;
+  players!: Player[];
+  selected!: Player;
 
-  selected! : Player ;
-  
-  constructor() { }
+  constructor(
+    private VideolistService: VideolistService
+  ) { }
 
   ngOnInit(): void {
+    this.getHeroes();
   }
   onSelect(players: Player): void {
     this.selected = players;
   }
+  getHeroes(): void {
+    this.VideolistService.getHeroes()
+        .subscribe(players => this.players = players);
+  }
+
 }
