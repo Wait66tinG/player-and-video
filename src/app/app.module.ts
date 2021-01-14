@@ -7,7 +7,7 @@ import { PlayersComponent } from './players/players.component';
 import { FormsModule } from '@angular/forms';
 import { PlayerVideoListComponent } from './player-video-list/player-video-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { HttpClientModule } from '@angular/common/http';
 
 import { MatSliderModule } from '@angular/material/slider';
 import { MatIconModule } from '@angular/material/icon';
@@ -17,7 +17,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -39,6 +39,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatCardModule,
     MatTableModule,
     MatAutocompleteModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

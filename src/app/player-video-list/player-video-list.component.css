@@ -5,14 +5,14 @@
 
 }
 .back{
-    height: 200px;
-    opacity: 0.2;
+    height: 400px;
+    opacity: 0.4;
 }
 .front{
     background: transparent;
     position: relative;
     width: 100%;
-    top: -200px;
+    top: -250px;
 }
 .playername{
     padding: 6rem 0 5rem 1rem;
