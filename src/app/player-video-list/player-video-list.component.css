@@ -1,18 +1,15 @@
 .container{
     padding-top: 25px;
 }
-.playerPicture{
 
-}
-.back{
+/* .back{
     height: 400px;
     opacity: 0.4;
-}
+} */
 .front{
     background: transparent;
     position: relative;
     width: 100%;
-    top: -250px;
 }
 .playername{
     padding: 6rem 0 5rem 1rem;

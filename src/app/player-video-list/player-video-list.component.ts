@@ -23,17 +23,12 @@ export class PlayerVideoListComponent implements OnInit {
   dataSource: video_list[] = [];
   dataSourceformat:time_format[] = [];
 
-  displayedColumns: string[] = ['date', 'length', 'url'];
-
-  today: number = Date.now();
-  
-  // pictureSrc: string = "../../assets/image/TIME.png" ;
+  displayedColumns: string[] = ['title', 'date','length', 'url'];
 
   constructor(
     private VideolistService: VideolistService,
     public http:HttpClient,
   ) {
-    // Create 100 users
   }
 
 
@@ -43,23 +38,10 @@ export class PlayerVideoListComponent implements OnInit {
     this._player = data;
     this.pictureSrc = `assets/image/${data?.name}.png`;
     this.getPlayerVideos()
-    // this.formatUnixTime(this.dataSource)
   }
   
   getPlayerVideos(): void {
     this.VideolistService.getPlayerVideos(this._player.name)
       .subscribe(dataSource => this.dataSource = dataSource);
-  }
-
-  formatUnixTime(videolist:video_list[]):void{
-    // for (let index = 0; index < videolist.length; index++) {
-    //   // const element = array[index];
-    //   this.dataSourceformat[index].bvid = videolist[index].bvid
-    //   this.dataSourceformat[index].created = moment(videolist[index].created).format()
-    //   this.dataSourceformat[index].id = videolist[index].id
-    //   this.dataSourceformat[index].length = videolist[index].length
-    //   this.dataSourceformat[index].title = videolist[index].title
-      console.log("1",videolist[0].created)
-    
   }
 }

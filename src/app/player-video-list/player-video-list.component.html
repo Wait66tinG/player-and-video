@@ -1,37 +1,48 @@
 <div *ngIf="_player" >
     <div class="container">
-        <div class="back">
-            <img style="height: 100%;width: 100%;" [src]="pictureSrc" alt="">
+        <div class="back" style="height: 300px;width: 100%;">
+            <div class="playername" style="display: inline;height: 300px;width: 50%;">
+                <p><strong>{{_player.name}}</strong></p>
+            </div>
+            <div style="height: 300px;width: 50%;display: inline">
+                <img style="height: 100%;width: 100%;" [src]="pictureSrc" alt="">
+            </div>
         </div>
         <div class="front">
-            <div class="playername">
+
+        </div>
+    </div>
+</div>
+<div *ngIf="_player == null" >
+    21312313
+</div>
+            <!-- <div class="playername">
                 <p><strong>{{_player.name}}</strong></p>
             </div>
             <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-                <!-- Position Column -->
-                <ng-container matColumnDef="date">
+                <ng-container matColumnDef="title">
                     <mat-header-cell *matHeaderCellDef style="font-size: 25px;"> 发布日期 </mat-header-cell>
                     <mat-cell *matCellDef="let element" style="margin-left: 5px;margin-right: 5px;"> {{element.title}}</mat-cell>
-                    <!-- <mat-cell *matCellDef="let element"> {{element.created*1000 | date:'YYYY-MM-dd HH:mm'}}</mat-cell> -->
                 </ng-container>
-                <!-- | date:'fullDate' -->
-                <!-- Name Column -->
-                <ng-container matColumnDef="length">
-                    <mat-header-cell *matHeaderCellDef> 时长 </mat-header-cell>
+
+                <ng-container matColumnDef="date">
+                    <mat-header-cell *matHeaderCellDef style="font-size: 25px;"> 发布日期 </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.created*1000 | date:'YYYY-MM-dd HH:mm'}}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="length" >
+                    <mat-header-cell *matHeaderCellDef style="font-size: 25px;"> 时长 </mat-header-cell>
                     <mat-cell *matCellDef="let element"> {{element.length}} </mat-cell>
                 </ng-container>
 
-                <!-- Weight Column -->
                 <ng-container matColumnDef="url">
-                    <mat-header-cell *matHeaderCellDef> 链接地址 </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef style="font-size: 25px;"> 链接地址 </mat-header-cell>
                     <mat-cell *matCellDef="let element"> <a href="https://www.bilibili.com/video/{{element.bvid}}">跳转</a> </mat-cell>
                 </ng-container>
 
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                 <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-            </mat-table>
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+            </mat-table> -->
 
-        </div>
-    </div>
-</div>
 
