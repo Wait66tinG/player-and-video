@@ -1,48 +1,83 @@
-<div *ngIf="_player" >
-    <div class="container">
+<div *ngIf="_player" class="container">
+    <!-- <div class="container">
         <div class="back" style="height: 300px;width: 100%;">
             <div class="playername" style="display: inline;height: 300px;width: 50%;">
                 <p><strong>{{_player.name}}</strong></p>
             </div>
-            <div style="height: 300px;width: 50%;display: inline">
-                <img style="height: 100%;width: 100%;" [src]="pictureSrc" alt="">
+        </div>
+    </div> -->
+    <div class="top">
+        <div class="topleft">
+            <div class="title">
+                <span>{{_player.name}}</span>
+            </div>
+            <div class="pargraph">
+                <p>种族:</p>
+                <p>姓名:</p>
+                <p>别称:</p>
+                <p>战队:</p>
+                <p>国家:</p>
             </div>
         </div>
-        <div class="front">
-
+        <div class="picturediv">
+            <img style="height: 100%;width: auto;" [src]="pictureSrc" alt="">
         </div>
     </div>
+    <mat-divider></mat-divider>
+    <div class="main">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="title" style="width: 10px;">
+                <mat-header-cell *matHeaderCellDef > Weight </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="created">
+                <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.created*1000 | date:'YYYY-MM-dd HH:mm'}} </mat-cell>
+                <mat-cell *matCellDef="let element"> {{element.created*1000 | date:'YYYY-MM-dd HH:mm'}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="length">
+                <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.length}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="bvid">
+                <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <a href="https://www.bilibili.com/video/{{element.bvid}}">跳转</a>
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns" style="font-size: 50px;"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </table>
+        <mat-paginator [pageSizeOptions]="[12]" showFirstLastButtons></mat-paginator>
+        <!-- <nz-table #basicTable [nzData]="rawdata" style="height: 100%;">
+            <thead>
+              <tr >
+                <th>标题</th>
+                <th>上传时间</th>
+                <th>时长</th>
+                <th>链接</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of basicTable.data">
+                <td>{{ data.title }}</td>
+                <td>{{ data.created*1000 | date:'YYYY-MM-dd HH:mm' }}</td>
+                <td>{{ data.length }}</td>
+                <td>
+                  <a href="https://www.bilibili.com/video/{{ data.bvid }}">跳转</a>
+                </td>
+              </tr>
+            </tbody>
+          </nz-table> -->
+    </div>
+
+
 </div>
-<div *ngIf="_player == null" >
-    21312313
-</div>
-            <!-- <div class="playername">
-                <p><strong>{{_player.name}}</strong></p>
-            </div>
-            <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-                <ng-container matColumnDef="title">
-                    <mat-header-cell *matHeaderCellDef style="font-size: 25px;"> 发布日期 </mat-header-cell>
-                    <mat-cell *matCellDef="let element" style="margin-left: 5px;margin-right: 5px;"> {{element.title}}</mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="date">
-                    <mat-header-cell *matHeaderCellDef style="font-size: 25px;"> 发布日期 </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> {{element.created*1000 | date:'YYYY-MM-dd HH:mm'}}</mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="length" >
-                    <mat-header-cell *matHeaderCellDef style="font-size: 25px;"> 时长 </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> {{element.length}} </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="url">
-                    <mat-header-cell *matHeaderCellDef style="font-size: 25px;"> 链接地址 </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> <a href="https://www.bilibili.com/video/{{element.bvid}}">跳转</a> </mat-cell>
-                </ng-container>
-
-                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-            </mat-table> -->
-
-
+<!-- <div *ngIf="_player == none">
+    123213133123
+</div> -->

@@ -1,26 +1,68 @@
 <div class="container">
-    <mat-grid-list cols="4" rowHeight="800px">
-        <mat-grid-tile colspan="1">
-            <div class="selectPlayer">
-                <div class="title">
-                    <strong>
-                        <p>Player</p>
-                    </strong>
-                </div>
-                <div class="playerList">
-                    <mat-selection-list [multiple]="false">
-                        <mat-list-option class="listOption" *ngFor="let player of players" (click)="onSelect(player)"
-                            [class.selected]="player === selected">
-                            {{player.name}}
-                        </mat-list-option>
-                    </mat-selection-list>
-                </div>
+    <!-- <mat-grid-list cols="4" rowHeight="950px">
+        <mat-grid-tile colspan="1" style="background-color: aqua;">
+            <div style="font-size: 20px;align-items: ;">
+                player
+            </div>
+            
+            <div class="playerList">
+                <mat-selection-list [multiple]="false">
+                    <mat-list-option class="listOption" *ngFor="let player of players" (click)="onSelect(player)"
+                        [class.selected]="player === selected">
+                        {{player.name}}
+                    </mat-list-option>
+                </mat-selection-list>
             </div>
         </mat-grid-tile>
         <mat-grid-tile colspan="3">
             <div style="height: 100%;width: 100%;">
-                <app-player-video-list [player]="selected"></app-player-video-list>
+                
             </div>
         </mat-grid-tile>
-    </mat-grid-list>
+    </mat-grid-list> -->
+    <div class="sidenavbar">
+        <mat-toolbar class="navbar">
+            <span class="title" routerLink="/"><strong><a routerLink="/">FTBA</a></strong></span>
+            <div class="item">
+                <span>
+                    <a routerLink="/player">录像</a>
+                </span>
+                <span>百科</span>
+            </div>
+        </mat-toolbar>
+        <mat-divider></mat-divider>
+
+        <!-- <mat-selection-list [multiple]="false">
+            <cdk-virtual-scroll-viewport itemSize="35px">
+                <mat-list-option class="listOption" *cdkVirtualFor="let player of players" (click)="onSelect(player)"
+                    (keyup.enter)="onSelect(player)" [class.selected]="player === selected">
+                    {{player.name}}
+                </mat-list-option>
+            </cdk-virtual-scroll-viewport>
+        </mat-selection-list> -->
+        <div class="example-container">
+            <mat-form-field class="filter">
+                <input (keyup)="applyFilter($event)" matInput placeholder="Filter">
+            </mat-form-field>
+            <table mat-table [dataSource]="dataSource">
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="name" sticky>
+                    <td class="tableitem" mat-cell *matCellDef="let element" >
+                    <button mat-flat-button style="width: 100%;height: 100%;padding: 0; margin: 0%;font-size: 20px; justify-content: left;" (click)="onSelect(element)" (keyup.enter)="onSelect(element)"
+                    [class.selected]="player === selected">
+                        {{element.name}}
+                    </button>
+                        
+                    </td>
+                </ng-container>
+
+                <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr> -->
+                <tr style="padding: 0%;" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+    </div>
+    <div class="main">
+        <app-player-video-list [player]="selected"></app-player-video-list>
+    </div>
 </div>

@@ -1,24 +1,76 @@
-.container{
-    padding-top: 25px;
-}
-
-/* .back{
-    height: 400px;
-    opacity: 0.4;
-} */
-.front{
-    background: transparent;
-    position: relative;
-    width: 100%;
-}
-.playername{
-    padding: 6rem 0 5rem 1rem;
-    font-size: 10rem;
-    align-items: center;
+.top{
+    /* background-color: rosybrown; */
+    height: 25%;
+    min-height: 200px;
     display: flex;
+    justify-content: space-between;
+    min-width: 400px;;
 }
-table {
-    width: 100%;
+.main{
+    /* background-color:yellow; */
+    height: 65%;
+}
+.container{
+    height: 100vh;
+    padding-right: 1rem;
+}
+.picturediv{
+    height: 100%;
+    width: auto;
+    right: 0;
+    background-color: aqua;
+    opacity: 0.8;
+    border: 2px solid whitesmoke;
+    border-radius: 5px;
+}
+.topleft{
+    height: 100%;
+    width: auto;
 
-  }
-  
+}
+
+.title{
+    height: 50%;
+    width: auto;
+    /* background-color: blue; */
+    font-size: 50px;
+    line-height: 100px;
+    padding: 0 1rem;
+}
+.pargraph{
+    height: 50%;
+    width: auto;
+    padding: 0 1rem;
+    display: flex;
+    flex-wrap:wrap;
+    align-items: center;
+}
+
+.pargraph p{
+    width: 15rem;
+}
+
+.mat-elevation-z8{
+    box-shadow: none;
+    height: 100%;
+}
+
+/* nz-table{
+    
+} */
+
+.mat-column-title{
+    flex: 0 0 60%;
+}
+.mat-column-created {
+    flex: 0 0 20%;
+}
+.mat-column-length {
+    flex: 0 0 10%;
+}
+.mat-column-bvid {
+    flex: 0 0 10%;
+}
+.mat-header-cell {
+    font-size: 20px;
+}

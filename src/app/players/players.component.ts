@@ -4,6 +4,8 @@ import { from } from 'rxjs';
 import { Player } from '../video-data';
 import { VideolistService } from '../videolist.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { MatTableDataSource } from '@angular/material/table';
+
 const headers = new HttpHeaders({
   'accept': 'application/json'
 });
@@ -15,11 +17,13 @@ const headers = new HttpHeaders({
 export class PlayersComponent implements OnInit {
   players!: Player[];
   selected!: Player;
-  public list:any;
+  public list: any;
+  dataSource: any;
+  displayedColumns: string[] = ['name'];
   constructor(
     private VideolistService: VideolistService,
-    public http:HttpClient,
-    ) { }
+    public http: HttpClient,
+  ) { }
 
   ngOnInit(): void {
     this.getPlayers();
@@ -29,15 +33,13 @@ export class PlayersComponent implements OnInit {
   }
   getPlayers(): void {
     this.VideolistService.getPlayers()
-      .subscribe(players => this.players = players);
+      .subscribe(players => {
+        this.players = players
+        this.dataSource = new MatTableDataSource(this.players);
+      });
   }
-  // getdata():void{
-  //   let api = "http://localhost:8000/get";
-  //   this.http.get(api).subscribe((response:any)=>{
-  //     console.log(response);
-  //     this.list=response.result.json();
-  //   })
-
-  // }
-
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 }
