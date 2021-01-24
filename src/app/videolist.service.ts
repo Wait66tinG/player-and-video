@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Player, video_list } from './video-data';
+import { Player, video_list, winprobability } from './video-data';
 import { observable, Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -8,8 +8,15 @@ import { catchError, map, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class VideolistService {
-  private playersUrl = 'http://127.0.0.1:8000/getPlayers';  // URL to web api
-  private playerVideosUrl = 'http://127.0.0.1:8000/getPlayersVideo';  // URL to web api
+  // private playersUrl = 'http://127.0.0.1:8000/getPlayers';  // URL to web api
+  // private playerVideosUrl = 'http://127.0.0.1:8000/getPlayersVideo';  // URL to web api
+  // private newVideosUrl = 'http://127.0.0.1:8000/getNewReport';  // URL to web api
+  // private winprobability = 'http://127.0.0.1:8000/getWinprobability1';  // URL to web api
+  // 服务器版本
+  private playersUrl = '/getPlayers';  // URL to web api
+  private playerVideosUrl = '/getPlayersVideo';  // URL to web api
+  private newVideosUrl = '/getNewReport';  // URL to web api
+  private winprobability = '/getWinprobability1';  // URL to web api
   constructor(
     private http: HttpClient,
 
@@ -49,6 +56,18 @@ export class VideolistService {
     return this.http.get<video_list[]>(this.playerVideosUrl,{params: {player:player}})
       .pipe(
         catchError(this.handleError<video_list[]>('getPlayerVideos', []))
+      );
+  }
+  getNewVideos(): Observable<video_list[]> {
+    return this.http.get<video_list[]>(this.newVideosUrl)
+      .pipe(
+        catchError(this.handleError<video_list[]>('getNewVideos', []))
+      );
+  }
+  getWinprobability(): Observable<winprobability> {
+    return this.http.get<winprobability>(this.winprobability)
+      .pipe(
+        catchError(this.handleError<winprobability>('getWinprobability',))
       );
   }
 }

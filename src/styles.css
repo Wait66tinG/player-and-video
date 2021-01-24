@@ -12,13 +12,14 @@ blockquote:before, blockquote:after,q:before, q:after {content:'';content:none} 
 input,select,textarea,button {vertical-align:middle}  /* 重置表单控件垂直居中*/
 button {border:0 none;background-color:transparent;cursor:pointer}  /* 重置表单button按钮效果 */
 body {background:#fff}   /* 重置body 页面背景为白色 */
-body,th,td,input,select,textarea,button {font-size:16px;line-height:1 ;font-family:"微软雅黑", "黑体","宋体";color:#666} /* 重置页面文字属性 */
+body,th,td,input,select,textarea,button {font-size:16px;line-height:1 ;font-family:"微软雅黑", "黑体","宋体";color:rgb(0, 0, 0)} /* 重置页面文字属性 */
 a {color:#666;text-decoration:none}  /* 重置链接a标签 */
 a:active, a:hover {text-decoration:none}   /* 重置链接a标签的鼠标滑动效果 */
 address,caption,cite,code,dfn,em,var {font-style:normal;font-weight:normal}  /* 重置样式标签的样式 */
 caption {display:none;}    /* 重置表格标题为隐藏 */
 table {width:100%;border-collapse:collapse;border-spacing:0;table-layout:fixed;}    /* 重置table属性 */
 img{vertical-align:top}  /* 图片在当前行内的垂直位置 */
+iframe{border: none;}
 *{
     font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
 }

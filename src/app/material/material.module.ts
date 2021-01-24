@@ -8,6 +8,11 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatCardModule } from '@angular/material/card';
+import { MatCarouselModule } from '@ngmodule/material-carousel';
+import {MatIconModule} from '@angular/material/icon';
+
+
 
 const MaterialComponents = [
   MatButtonModule,
@@ -19,6 +24,9 @@ const MaterialComponents = [
   MatTableModule,
   MatInputModule,
   MatPaginatorModule,
+  MatCardModule,
+  MatCarouselModule.forRoot(),
+  MatIconModule,
 ];
 
 @NgModule({

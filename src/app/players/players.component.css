@@ -52,6 +52,7 @@ cdk-virtual-scroll-viewport{
     width: 100%;
     overflow: auto;
     box-shadow: none;
+    padding-left: 1rem;
   }
 table{
     width: 100%;
@@ -63,7 +64,7 @@ ng-container{
 .tableitem{
     width: 100%;
     border-bottom-color: rgba(0, 0, 0, 0);
-    font-size: 20px;
+    font-size: 18px;
     padding: 0px;
 }
 td.mat-cell:last-of-type{
@@ -73,7 +74,7 @@ td.mat-cell:last-of-type{
 
 .filter{
     width: 100%;
-    font-size: 25px;
+    font-size: 20px;
 }
 button{
     text-align: left;

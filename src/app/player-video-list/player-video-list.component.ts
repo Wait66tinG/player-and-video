@@ -17,14 +17,14 @@ export class PlayerVideoListComponent implements OnInit {
   _player!: Player;
   pictureSrc!: string;
   rawdata: video_list[] = [];
-  displayedColumns: string[] = ['title','created','length','bvid'];
+  newvideolist: video_list[] = [];
+
+  displayedColumns: string[] = ['title', 'created', 'length', 'bvid'];
   // displayedColumns: string[] = ['title'];
   dataSource: any;
+  newvideolistdata: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-  ngAfterViewInit() {
-    
-  }
+    paginator2!: MatPaginator;
   constructor(
     private VideolistService: VideolistService,
     public http: HttpClient,
@@ -32,18 +32,29 @@ export class PlayerVideoListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
   @Input() set player(data: Player) {
     this._player = data;
     this.pictureSrc = `assets/image/${data?.name}.png`;
+    this.getnewVideo()
     this.getPlayerVideos()
+  }
+
+  getnewVideo(): void {
+    this.VideolistService.getNewVideos()
+      .subscribe(newVideo => {
+        this.newvideolist = newVideo;
+        // this.newvideolistdata = new MatTableDataSource(this.newvideolist);
+        // this.newvideolistdata.paginator2 = this.paginator2;
+      });
   }
 
   getPlayerVideos(): void {
     this.VideolistService.getPlayerVideos(this._player?.name)
       .subscribe(rawdata => {
-        this.rawdata = rawdata
+        this.rawdata = rawdata;
         this.dataSource = new MatTableDataSource(this.rawdata);
         this.dataSource.paginator = this.paginator;
       });

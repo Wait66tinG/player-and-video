@@ -10,3 +10,11 @@ export interface Player {
     id: number;
     name: string;
 }
+
+export interface winprobability {
+    number: number;
+    PVT:string;
+    PVZ:string;
+    TVZ:string;
+    date:string;
+}
