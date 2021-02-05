@@ -8,7 +8,7 @@
                 <button mat-flat-button
                     style="width: 100%;height: 100%;padding: 0; margin: 0%;font-size: 20px; justify-content: left;"
                     (click)="onSelect(element)" (keyup.enter)="onSelect(element)"
-                    [class.selected]="element === selected" [routerLink]="['',{outlets: {popup:['whichplayer',element.name]}}]">
+                    [class.selected]="element === selected" [routerLink]="['',{outlets: {popup:['dddplayer',element.name]}}]">
                     {{element.name}}
                 </button>
             </td>

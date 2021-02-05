@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
     <div class="sidenavbar">
         <mat-toolbar class="navbar">
             <span class="title" routerLink="/"><strong><a routerLink="/">FTBA</a></strong></span>
@@ -9,14 +9,17 @@
                 <span>百科</span>
             </div>
         </mat-toolbar>
-        <mat-divider></mat-divider>
+        <mat-divider></mat-divider> -->
         <div class="subnewsbox">
             <div class="subnewsinnerbox">
                 <div class="innerboxtitle">
-                    <div style="font-size: 30px;"><strong>看看录像吧</strong>
-                        <br>
+                    <div style="font-size: 30px;widows: 5em;line-height:30px;word-wrap:break-word;">
+                        <strong>看看录像吧 </strong>
                     </div>
-                    <iframe src="../assets/icon/video-camera.svg" width="32" height="32"></iframe>
+                    <div>
+                        <img style="width: 30px;height: 30px;" src="assets\icon\video-camera.svg" alt="">
+                    </div>
+                    <!-- <iframe src="" frameborder="0"></iframe> -->
                 </div>
                 <div class="innerboxmain">
                     <p style="width: 100%;word-wrap:break-word;height: 1em;">参考经验和亲身实战一样重要</p>
@@ -29,15 +32,14 @@
                         <p>TvZ {{winprobability.TVZ}}</p>
                         <P>数据来源<a href="http://aligulac.com/">Aligulac</a></P>
                     </div>
-
                 </div>
-                <div class="innerbutton">
-                    <button mat-stroked-button>登录</button>
-                    <a style="padding-left: 1rem;">注册</a>
-                </div>
+                <!-- <div class="innerbutton">
+                    <button (click)="loginOrSighup(1)" mat-stroked-button [routerLink]="['login',{ outlets: { popup: ['login'] } }]">登录</button>
+                    <a (click)="loginOrSighup(2)" style="padding-left: 1rem;" routerLink="/login">注册</a>
+                </div> -->
             </div>
         </div>
-    </div>
+    <!-- </div>
     <div class="main">
         <div class="headline">
             <mat-carousel class="maincarousel" timings="500ms ease-in" [autoplay]="true" [interval]="5000"
@@ -54,4 +56,4 @@
             <mat-card class="card3 subitemcard">Simple card3</mat-card>
         </div>
     </div>
-</div>
+</div> -->

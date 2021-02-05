@@ -1,0 +1,29 @@
+<div *ngIf="!isActive" class="subnewsbox">
+    <div class="subnewsinnerbox">
+        <div class="innerboxtitle">
+            <div style="font-size: 30px;line-height: 30px;"><strong>登录或者注册账号吧</strong>
+                <img style="width: 30px;height: 30px;" src="assets\icon\user.svg" alt="">
+            </div>
+        </div>
+        <div class="innerboxmain">
+            <p>
+                {{isActive}}
+                登录发表评论参加讨论
+            </p>
+        </div>
+    </div>
+</div>
+<div *ngIf="isActive" class="subnewsbox">
+    <div class="subnewsinnerbox">
+        <div class="innerboxtitle">
+            <div style="font-size: 30px;line-height: 30px;"><strong>欢迎{{username}}</strong>
+                <img style="width: 30px;height: 30px;" src="assets\icon\id-card.svg" alt="">
+            </div>
+            {{isActive}}
+        </div>
+        <div class="innerboxmain">
+            <p>
+            </p>
+        </div>
+    </div>
+</div>

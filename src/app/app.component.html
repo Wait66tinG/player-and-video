@@ -1,5 +1,23 @@
-<!-- <nav>
-    <a routerLink="/players">123</a>
-</nav> -->
-<router-outlet></router-outlet>
-<!-- <app-players></app-players> -->
+<div class="container">
+    <div class="sidenavbar">
+        <div class="navbar">
+            <div class="title"><strong><a [routerLink]="['']">FTBA</a></strong></div>
+            <div class="item">
+                <div style="display: flex;">
+                    <a [routerLink]="['player']">录像</a>
+                </div>
+                <div>
+                    <a [routerLink]="['discuss']">评论</a>
+                </div>
+                <div>
+                    <a [routerLink]="['login']">我的账户</a>
+                </div>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <router-outlet></router-outlet>
+    </div>
+    <div class="main">
+        <router-outlet name="popup"></router-outlet>
+    </div>
+</div>

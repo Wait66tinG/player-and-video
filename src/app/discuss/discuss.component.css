@@ -1,0 +1,81 @@
+.container{
+    width: 100%;
+    margin: auto;
+    height: 100vh;
+    border-bottom: 2px solid rgba( 55, 55, 233, 0.2);
+    
+}
+
+.sidenavbar{
+    width: 30%;
+    min-width: 300px;
+    height: 100%;
+    float: left;
+    border-right: 1px solid whitesmoke;
+    padding-left: 1rem;
+
+}
+.main{
+    width: 70%;
+    height: 100%;
+    float: left;
+    margin: 0px;
+}
+.navbar{
+    justify-content: space-between;
+    background-color: white;
+    height: 10%;
+    /* padding: 0px 1rem; */
+}
+.item span{
+    padding: 0 1rem;
+}
+.title{
+    font-size: 25px;
+}
+
+.listOption{
+    line-height: 25px;
+    font-size: 20px;
+}
+/* mat-selection-list{
+    padding: 0px;
+    height: 90%;
+} */
+
+cdk-virtual-scroll-viewport{
+    height: 100%;
+}
+
+.example-container {
+    height: 90%;
+    width: 100%;
+    overflow: auto;
+    box-shadow: none;
+    padding-left: 1rem;
+  }
+table{
+    width: 100%;
+}
+
+ng-container{
+    width: 100%;
+}
+.tableitem{
+    width: 100%;
+    border-bottom-color: rgba(0, 0, 0, 0);
+    font-size: 18px;
+    padding: 0px;
+}
+td.mat-cell:last-of-type{
+    padding: 0px;
+    width: 100%;
+}
+
+.filter{
+    width: 100%;
+    font-size: 20px;
+}
+button{
+    text-align: left;
+}

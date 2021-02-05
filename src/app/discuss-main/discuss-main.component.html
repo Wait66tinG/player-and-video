@@ -18,7 +18,7 @@
     </div>
     <mat-divider></mat-divider>
     <div class="player-list-main">
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
             <ng-container matColumnDef="title" style="width: 10px;">
                 <mat-header-cell *matHeaderCellDef>标题</mat-header-cell>
@@ -45,12 +45,12 @@
 
             <mat-header-row *matHeaderRowDef="displayedColumns" style="font-size: 50px;"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        </table>
+        </table> -->
         <mat-paginator [pageSizeOptions]="[10]" showFirstLastButtons></mat-paginator>
     </div>
 </div>
 <div *ngIf="!playername" class="containernone">
-    <h1>最新更新</h1>
+    <h1>最新评论</h1>
     <div class="mainnone">
         <table mat-table [dataSource]="newvideolist" class="mat-elevation-z8">
 

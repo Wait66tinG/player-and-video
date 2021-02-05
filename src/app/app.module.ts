@@ -14,8 +14,17 @@ import { zh_CN } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 import { IndexComponent } from './index/index.component';
+import { LoginComponent } from './login/login.component';
+import { LoginMainComponent } from './login-main/login-main.component';
+import { IndexMainComponent } from './index-main/index-main.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HomeComponent } from './home/home.component';
+import { HomeMainComponent } from './home-main/home-main.component';
+import { DiscussComponent } from './discuss/discuss.component';
+import { DiscussMainComponent } from './discuss-main/discuss-main.component';
 
-registerLocaleData(zh);
+// registerLocaleData(zh);
 
 
 @NgModule({
@@ -23,7 +32,15 @@ registerLocaleData(zh);
     AppComponent,
     PlayersComponent,
     PlayerVideoListComponent,
-    IndexComponent
+    IndexComponent,
+    LoginComponent,
+    LoginMainComponent,
+    IndexMainComponent,
+    SignUpComponent,
+    HomeComponent,
+    HomeMainComponent,
+    DiscussComponent,
+    DiscussMainComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +48,8 @@ registerLocaleData(zh);
     FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    Material
+    Material,
+    ReactiveFormsModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }],
   bootstrap: [AppComponent]

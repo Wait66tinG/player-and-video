@@ -11,8 +11,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
 import {MatIconModule} from '@angular/material/icon';
-
-
+import {MatFormFieldModule } from '@angular/material/form-field';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -27,6 +27,9 @@ const MaterialComponents = [
   MatCardModule,
   MatCarouselModule.forRoot(),
   MatIconModule,
+  MatFormFieldModule,
+  FormsModule,
+  ReactiveFormsModule,
 ];
 
 @NgModule({

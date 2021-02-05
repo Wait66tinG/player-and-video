@@ -7,15 +7,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 
-const headers = new HttpHeaders({
-  'accept': 'application/json'
-});
 @Component({
-  selector: 'app-players',
-  templateUrl: './players.component.html',
-  styleUrls: ['./players.component.css']
+  selector: 'app-discuss',
+  templateUrl: './discuss.component.html',
+  styleUrls: ['./discuss.component.css']
 })
-export class PlayersComponent implements OnInit {
+export class DiscussComponent implements OnInit {
   players!: Player[];
   selected!: Player;
   public list: any;
@@ -29,7 +26,7 @@ export class PlayersComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPlayers();
-    this.router.navigate(['',{outlets: {popup:['whichplayer','']}}]);
+    this.router.navigate(['',{outlets: {popup:['dddplayer','']}}]);
   }
   onSelect(players: Player): void {
     this.selected = players;

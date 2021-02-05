@@ -10,12 +10,11 @@ import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-player-video-list',
-  templateUrl: './player-video-list.component.html',
-  styleUrls: ['./player-video-list.component.css', '../app.component.css']
+  selector: 'app-discuss-main',
+  templateUrl: './discuss-main.component.html',
+  styleUrls: ['./discuss-main.component.css']
 })
-
-export class PlayerVideoListComponent implements OnInit {
+export class DiscussMainComponent implements OnInit {
   _player!: Player;
   playername!:string
   pictureSrc!: string;

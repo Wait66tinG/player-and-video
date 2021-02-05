@@ -1,0 +1,31 @@
+.headline{
+    width: auto;
+    height: 70%;
+    padding: 1rem;
+}
+.subitem{
+    width: auto;
+    height: 30%;
+    background-color: azure;
+    flex-direction:row;
+    justify-content:space-around;
+    display: flex;
+    align-items: center;
+}
+
+.subitemcard{
+    width: 30%;
+    height: 80%;
+}
+.card1:hover{
+    box-shadow: -6px 6px 3px #888888;
+    background-color: rgba( 55, 55, 233, 0.1);
+}
+.card2:hover{
+    box-shadow: 0 6px 3px #888888;
+    background-color: rgba( 55, 55, 233, 0.1);
+}
+.card3:hover{
+    box-shadow: 6px 6px 3px #888888;
+    background-color: rgba( 55, 55, 233, 0.1);
+}
