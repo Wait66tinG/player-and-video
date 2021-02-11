@@ -25,10 +25,17 @@ export interface Player {
     id: number;
     name: string;
     race:string;
-    realName:string;
-    nickName:string;
-    team:string;
+    realname:string;
+    nickname:string;
     country:string;
+}
+
+export interface Discuss {
+    id: number;
+    player: number;
+    user:number;
+    date:number;
+    context:string;
 }
 
 export interface winprobability {

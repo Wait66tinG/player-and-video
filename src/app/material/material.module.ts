@@ -10,9 +10,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
-import {MatIconModule} from '@angular/material/icon';
-import {MatFormFieldModule } from '@angular/material/form-field';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -30,6 +31,7 @@ const MaterialComponents = [
   MatFormFieldModule,
   FormsModule,
   ReactiveFormsModule,
+  MatExpansionModule,
 ];
 
 @NgModule({

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Player, video_list } from '../video-data';
+import { Discuss, Player, video_list } from '../video-data';
 import { VideolistService } from '../videolist.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { MatTableDataSource } from '@angular/material/table';
@@ -15,13 +15,15 @@ import { Observable } from 'rxjs';
   styleUrls: ['./discuss-main.component.css']
 })
 export class DiscussMainComponent implements OnInit {
-  _player!: Player;
+  player!: Player;
   playername!:string
   pictureSrc!: string;
-  rawdata: video_list[] = [];
+  // rawdata: video_list[] = [];
+  discussdata:any;
+  a! :number;
   newvideolist: video_list[] = [];
-  displayedColumns: string[] = ['title', 'created', 'length', 'bvid'];
-
+  displayedColumns: string[] = ['name'];
+  // player!:Player
   dataSource: any;
   newvideolistdata: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -34,8 +36,10 @@ export class DiscussMainComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getnewVideo()
-    this.getPlayerVideos()
+    // this.getnewVideo()
+    this.getPlayer()
+    // this.getPlayerVideos()
+
   }
 
   getnewVideo(): void {
@@ -47,23 +51,51 @@ export class DiscussMainComponent implements OnInit {
       });
   }
 
-  getPlayerVideos(): void {
+  getPlayer(): void {
     this.route.paramMap.pipe(
       switchMap((params: ParamMap) =>{
         this.playername = params.get("name")!
-        // console.log("params.get('name')=",params.get("name"))
         this.pictureSrc = `assets/image/${this.playername}.png`;
-        return this.VideolistService.getPlayerVideos(params.get("name")!);
+        return this.VideolistService.getplayer(params.get("name")!);
       }
-        ))
-      // this.VideolistService.getPlayerVideos(this._player?.name)
-      .subscribe(rawdata => {
-        this.rawdata = rawdata;
-        this.dataSource = new MatTableDataSource(this.rawdata);
-        this.dataSource.paginator = this.paginator;
-        // console.log(rawdata)
-      });
+        )).subscribe(player => {
+          this.player = player
+          if (player) {
+            this.getDiscuss(player)
+          }
+        });
+
   }
+
+  getDiscuss(player:Player):void{
+    this.VideolistService.getdiscuss(player.id.toString())
+    .subscribe(data=>{
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
+      this.a = 1;
+      if(data.length==0){
+        this.a = 0;
+      }
+    })
+  }
+
+  // getPlayerVideos(): void {
+  //   this.route.paramMap.pipe(
+  //     switchMap((params: ParamMap) =>{
+  //       this.playername = params.get("name")!
+  //       // console.log("params.get('name')=",params.get("name"))
+  //       this.pictureSrc = `assets/image/${this.playername}.png`;
+  //       return this.VideolistService.getPlayerVideos(params.get("name")!);
+  //     }
+  //       ))
+  //     // this.VideolistService.getPlayerVideos(this._player?.name)
+  //     .subscribe(rawdata => {
+  //       this.rawdata = rawdata;
+  //       this.dataSource = new MatTableDataSource(this.rawdata);
+  //       this.dataSource.paginator = this.paginator;
+  //       // console.log(rawdata)
+  //     });
+  // }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

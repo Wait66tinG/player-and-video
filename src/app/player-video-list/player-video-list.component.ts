@@ -16,13 +16,13 @@ import { Observable } from 'rxjs';
 })
 
 export class PlayerVideoListComponent implements OnInit {
-  _player!: Player;
+  player!: Player;
   playername!:string
   pictureSrc!: string;
   rawdata: video_list[] = [];
   newvideolist: video_list[] = [];
   displayedColumns: string[] = ['title', 'created', 'length', 'bvid'];
-
+  // player!:Player
   dataSource: any;
   newvideolistdata: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -36,6 +36,7 @@ export class PlayerVideoListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getnewVideo()
+    this.getPlayer()
     this.getPlayerVideos()
   }
 
@@ -46,6 +47,18 @@ export class PlayerVideoListComponent implements OnInit {
         // this.newvideolistdata = new MatTableDataSource(this.newvideolist);
         // this.newvideolistdata.paginator2 = this.paginator2;
       });
+  }
+
+  getPlayer(): void {
+    this.route.paramMap.pipe(
+      switchMap((params: ParamMap) =>{
+        this.pictureSrc = `assets/image/${this.playername}.png`;
+        return this.VideolistService.getplayer(params.get("name")!);
+      }
+        )).subscribe(player => {
+          this.player = player
+          // console.log(player)
+        });
   }
 
   getPlayerVideos(): void {

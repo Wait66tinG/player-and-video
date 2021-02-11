@@ -86,3 +86,47 @@
 .mat-header-cell {
     font-size: 20px;
 }
+.discussItem{
+    /* border-radius: inherit;
+    border-radius: 5px;
+    border-bottom:1px solid black; */
+    height: 6rem;
+    display: flex;
+    align-items: center;
+}
+.discusstitle{
+    height: 100%;
+    width: 15%;
+    padding: 10px;
+    display: flex;
+    flex-direction:column;
+    justify-content: space-around;
+
+    /* background-color: brown; */
+}
+.discusstitleID{
+    font-size: 25px;
+}
+.discussbody{
+    width: 75%;
+    padding: 10px;
+    /* background-color: cadetblue; */
+}
+.replaybutton{
+    width: 10%;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    /* background-color: chartreuse; */
+}
+.example-table{
+    padding: 0;
+}
+.discussNotFound{
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 65%;
+}
+

@@ -5,11 +5,10 @@
                 <p style="font-size: 3rem;">{{playername}}</p>
             </div>
             <div class="pargraph">
-                <p>种族:</p>
-                <p>姓名:</p>
-                <p>别称:</p>
-                <p>战队:</p>
-                <p>国家:</p>
+                <p>种族:{{player.race}}</p>
+                <p>姓名:{{player.realname}}</p>
+                <p>绰号:{{player.nickname}}</p>
+                <p>国家:{{player.country}}</p>
             </div>
         </div>
         <div class="picturediv">
@@ -17,67 +16,40 @@
         </div>
     </div>
     <mat-divider></mat-divider>
+
+    
     <div class="player-list-main">
-        <!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-            <ng-container matColumnDef="title" style="width: 10px;">
-                <mat-header-cell *matHeaderCellDef>标题</mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="created">
-                <mat-header-cell *matHeaderCellDef> 发布时间 </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.created*1000 | date:'YYYY-MM-dd HH:mm'}} </mat-cell>
-                <mat-cell *matCellDef="let element"> {{element.created*1000 | date:'YYYY-MM-dd HH:mm'}} </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="length">
-                <mat-header-cell *matHeaderCellDef> 时长 </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.length}} </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="bvid">
-                <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
-                <mat-cell *matCellDef="let element">
-                    <a href="https://www.bilibili.com/video/{{element.bvid}}">跳转</a>
-                </mat-cell>
-            </ng-container>
-
-            <mat-header-row *matHeaderRowDef="displayedColumns" style="font-size: 50px;"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        </table> -->
+        <div  style="overflow:auto;height: 100%;width: 100%;">
+            <div *ngIf="!a" class="discussNotFound">
+                <div><strong>暂无评论</strong> </div>
+            </div>
+            <table *ngIf=a mat-table [dataSource]="dataSource" class="example-table">
+                <ng-container matColumnDef="name">
+                    <td class="tableitem" mat-cell *matCellDef="let element">
+                        <div class="discussItem">
+                            <div class="discusstitle">
+                                <div class="discusstitleID">
+                                    <strong>{{element.user}}</strong>
+                                </div>
+                                <div>
+                                    {{element.date}}
+                                </div>
+                            </div>
+                            <div class="discussbody">
+                                {{element.context}}
+                            </div>
+                            <div class="replaybutton">
+                                <a style="display: block;">回复</a>
+                            </div>
+                        </div>
+                    </td>
+                </ng-container>
+                <tr style="padding: 0%;" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
         <mat-paginator [pageSizeOptions]="[10]" showFirstLastButtons></mat-paginator>
     </div>
 </div>
 <div *ngIf="!playername" class="containernone">
-    <h1>最新评论</h1>
-    <div class="mainnone">
-        <table mat-table [dataSource]="newvideolist" class="mat-elevation-z8">
-
-            <ng-container matColumnDef="title" style="width: 10px;">
-                <mat-header-cell *matHeaderCellDef>标题</mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="created">
-                <mat-header-cell *matHeaderCellDef> 发布时间 </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.created*1000 | date:'YYYY-MM-dd HH:mm'}} </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="length">
-                <mat-header-cell *matHeaderCellDef> 时长 </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.length}} </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="bvid">
-                <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
-                <mat-cell *matCellDef="let element">
-                    <a href="https://www.bilibili.com/video/{{element.bvid}}">跳转</a>
-                </mat-cell>
-            </ng-container>
-
-            <mat-header-row *matHeaderRowDef="displayedColumns" style="font-size: 50px;"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        </table>
-    </div>
+    <h1>最新更新</h1>
 </div>

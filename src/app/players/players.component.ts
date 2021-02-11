@@ -34,13 +34,16 @@ export class PlayersComponent implements OnInit {
   onSelect(players: Player): void {
     this.selected = players;
   }
+
   getPlayers(): void {
     this.VideolistService.getPlayers()
       .subscribe(players => {
         this.players = players
         this.dataSource = new MatTableDataSource(this.players);
+        // console.log(players)
       });
   }
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();

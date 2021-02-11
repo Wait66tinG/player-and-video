@@ -36,6 +36,7 @@ export class DiscussComponent implements OnInit {
       .subscribe(players => {
         this.players = players
         this.dataSource = new MatTableDataSource(this.players);
+        // console.log('discuss',players)
       });
   }
   applyFilter(event: Event) {

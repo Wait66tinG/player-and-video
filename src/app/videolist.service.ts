@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Player, User, Userdata, video_list, winprobability } from './video-data';
+import { Discuss, Player, User, Userdata, video_list, winprobability } from './video-data';
 import { observable, Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -12,6 +12,8 @@ export class VideolistService {
   private playerVideosUrl = 'http://127.0.0.1:8000/getPlayersVideo';  // URL to web api
   private newVideosUrl = 'http://127.0.0.1:8000/getNewReport';  // URL to web api
   private winprobability = 'http://127.0.0.1:8000/getWinprobability1';  // URL to web api
+  private playerdata = 'http://localhost:8000/getPlayerData';
+  private playerdiscuss = 'http://localhost:8000/getDiscussByPlayer';
   // 服务器版本
   // private playersUrl = '/getPlayers';  // URL to web api
   // private playerVideosUrl = '/getPlayersVideo';  // URL to web api
@@ -63,6 +65,20 @@ export class VideolistService {
         catchError(this.handleError<winprobability>('getWinprobability',))
       );
   }
+
+  getplayer(player:string): Observable<Player> {
+    return this.http.get<Player>(this.playerdata,{ params: { player: player }})
+      .pipe(
+        catchError(this.handleError<Player>('getPlayer',))
+      );
+  }
+
+  getdiscuss(player:string): Observable<Discuss[]> {
+    return this.http.get<Discuss[]>(this.playerdiscuss,{ params: { player: player }})
+      .pipe(
+        catchError(this.handleError<Discuss[]>('getdiscuss',[]))
+      );
+  }
   // getLoginStatus(): Observable<Userdata> {
   //   const token = localStorage.getItem("token");
   //   const httpOptions = {
@@ -70,4 +86,5 @@ export class VideolistService {
   //   };
   //   return this.http.get<any>(this.cookieloginURL, httpOptions)
   // }
+  
 }
