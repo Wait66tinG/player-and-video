@@ -11,6 +11,7 @@ export class LoginService {
   private cookieloginURL = 'http://localhost:8000/items/cookie';
 
   userdata: Userdata = {
+    id:0,
     is_active: false,
     name: '',
     email: '',

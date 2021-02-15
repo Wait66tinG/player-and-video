@@ -27,6 +27,7 @@ export class LoginMainComponent implements OnInit {
   private userlogin = 'http://localhost:8000/users/login';
 
   userdata: Userdata = {
+    id:0,
     is_active: false,
     name: '',
     email: '',
@@ -34,10 +35,10 @@ export class LoginMainComponent implements OnInit {
   }
 
   constructor(
-    private LoginService: LoginService,
     private http: HttpClient,
     private fb: FormBuilder,
     private router: Router,
+    private LoginService: LoginService,
   ) { }
 
   ngOnInit(): void {
@@ -74,7 +75,8 @@ export class LoginMainComponent implements OnInit {
   cookielogin(): void {
     this.LoginService.getLoginStatus()
       .subscribe(userdata => {
-        this.isActive = userdata.is_active;
+        this.userdata.id = userdata.id;
+        // this.isActive = userdata.is_active;
         this.userdata.is_active = userdata.is_active;
         this.userdata.name = userdata.name;
         this.userdata.email = userdata.email;

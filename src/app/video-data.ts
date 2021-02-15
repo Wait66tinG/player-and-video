@@ -15,6 +15,7 @@ export interface User {
 }
 
 export interface Userdata {
+    id:number
     is_active:boolean
     name:string;
     email:string;

@@ -1,13 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { User } from '../video-data';
+import { User, Userdata } from '../video-data';
+import { LoginService } from '../login.service';
+import { Router } from '@angular/router';
 
 export function forbiddenNameValidator(self: SignUpComponent): ValidatorFn {
-  return (control: AbstractControl): {[key: string]: any} | null => {
+  return (control: AbstractControl): { [key: string]: any } | null => {
     const forbidden = control.value == self.signupForm?.get('password')?.value;
     // console.log(self.signupForm?.get('password')?.errors)
-    return !forbidden ? {forbiddenName: {value: control.value}} : null;
+    return !forbidden ? { forbiddenName: { value: control.value } } : null;
   };
 }
 
@@ -20,6 +22,14 @@ export function forbiddenNameValidator(self: SignUpComponent): ValidatorFn {
 export class SignUpComponent implements OnInit {
   private createuser = 'http://localhost:8000/users/';
   // firstpassword = '123456';
+  private userlogin = 'http://localhost:8000/users/login';
+  userdata: Userdata = {
+    id:0,
+    is_active: false,
+    name: '',
+    email: '',
+    item: []
+  }
 
   signupForm = new FormGroup({
     email: new FormControl('', [
@@ -64,13 +74,35 @@ export class SignUpComponent implements OnInit {
           "password": this.signupForm.value.password
         })
         .subscribe(rawdata => {
-          console.log(rawdata);
+          this.http.post<any>(this.userlogin,
+            { "email": this.signupForm.value.email, "password": this.signupForm.value.password })
+            .subscribe(rawdata => {
+
+              // console.log('123', rawdata, this.isActive);
+              localStorage.setItem("token", rawdata.token);
+              this.cookielogin()
+            });
         });
     }
   }
-  constructor(
 
+  cookielogin(): void {
+    this.LoginService.getLoginStatus()
+      .subscribe(userdata => {
+        this.userdata.id = userdata.id;
+        // this.isActive = userdata.is_active;
+        this.userdata.is_active = userdata.is_active;
+        this.userdata.name = userdata.name;
+        this.userdata.email = userdata.email;
+        this.userdata.item = userdata.item;
+        this.router.navigateByUrl('/home');
+      })
+  }
+
+  constructor(
+    private LoginService: LoginService,
     private http: HttpClient,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {

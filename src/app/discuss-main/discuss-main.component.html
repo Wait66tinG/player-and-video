@@ -17,35 +17,73 @@
     </div>
     <mat-divider></mat-divider>
 
-    
     <div class="player-list-main">
-        <div  style="overflow:auto;height: 100%;width: 100%;">
-            <div *ngIf="!a" class="discussNotFound">
+        <div style="overflow:auto;height: 100%;width: 100%;">
+            <div *ngIf="!haveDiscuss" class="discussNotFound">
+                <div class="buttondiv">
+                    <mat-accordion>
+                        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    发言
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <mat-form-field appearance="outline">
+                                <mat-label>您的评论</mat-label>
+                                <textarea matInput [(ngModel)]="discuss"></textarea>
+                            </mat-form-field>
+                            <!-- <mat-form-field class="example-full-width">
+                                <mat-label>您的评论</mat-label>
+                                <textarea matInput placeholder="针不戳..."></textarea>
+                            </mat-form-field> -->
+                            <button mat-button color="primary">发表</button>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
                 <div><strong>暂无评论</strong> </div>
             </div>
-            <table *ngIf=a mat-table [dataSource]="dataSource" class="example-table">
-                <ng-container matColumnDef="name">
-                    <td class="tableitem" mat-cell *matCellDef="let element">
-                        <div class="discussItem">
-                            <div class="discusstitle">
-                                <div class="discusstitleID">
-                                    <strong>{{element.user}}</strong>
+            <div *ngIf=haveDiscuss>
+                <div class="buttondiv">
+                    <mat-accordion>
+                        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    发言
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <mat-form-field appearance="outline">
+                                <mat-label>您的评论</mat-label>
+                                <textarea matInput [(ngModel)]="discuss"></textarea>
+                            </mat-form-field>
+                            <button mat-button color="primary">发表</button>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
+                <table mat-table [dataSource]="dataSource" class="example-table">
+                    <ng-container matColumnDef="name">
+                        <td class="tableitem" mat-cell *matCellDef="let element">
+                            <div class="discussItem">
+                                <div class="discusstitle">
+                                    <div class="discusstitleID">
+                                        <strong>{{element.user}}</strong>
+                                    </div>
+                                    <div>
+                                        {{element.date}}
+                                    </div>
                                 </div>
-                                <div>
-                                    {{element.date}}
+                                <div class="discussbody">
+                                    {{element.context}}
+                                </div>
+                                <div class="replaybutton">
+                                    <a style="display: block;">回复</a>
                                 </div>
                             </div>
-                            <div class="discussbody">
-                                {{element.context}}
-                            </div>
-                            <div class="replaybutton">
-                                <a style="display: block;">回复</a>
-                            </div>
-                        </div>
-                    </td>
-                </ng-container>
-                <tr style="padding: 0%;" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
+                        </td>
+                    </ng-container>
+                    <tr style="padding: 0%;" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+
         </div>
         <mat-paginator [pageSizeOptions]="[10]" showFirstLastButtons></mat-paginator>
     </div>
