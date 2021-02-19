@@ -9,6 +9,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { LoginService } from '../login.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-discuss-main',
@@ -16,23 +17,24 @@ import { LoginService } from '../login.service';
   styleUrls: ['./discuss-main.component.css']
 })
 export class DiscussMainComponent implements OnInit {
+  // discussuserid!:number
   player!: Player;
   playername!: string
   pictureSrc!: string;
-  // rawdata: video_list[] = [];
   discussdata: any;
   discuss!: string;
   panelOpenState = false;
   haveDiscuss!: number;
   newvideolist: video_list[] = [];
   displayedColumns: string[] = ['name'];
-  private userlogin = 'http://localhost:8000/postDiscuss/';
+  private postdiscuss = 'http://localhost:8000/discuss/post';
+  private deletediscuss = 'http://localhost:8000/discuss/delete';
   dataSource: any;
   newvideolistdata: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   paginator2!: MatPaginator;
   userdata: Userdata = {
-    id:0,
+    id: 0,
     is_active: false,
     name: '',
     email: '',
@@ -44,6 +46,7 @@ export class DiscussMainComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private LoginService: LoginService,
+    public dialog: MatDialog,
   ) {
   }
 
@@ -51,6 +54,7 @@ export class DiscussMainComponent implements OnInit {
     // this.getnewVideo()
     this.getPlayer()
     // this.getPlayerVideos()
+    this.cookielogin()
 
   }
 
@@ -85,63 +89,64 @@ export class DiscussMainComponent implements OnInit {
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.paginator = this.paginator;
         this.haveDiscuss = 1;
+        // console.log(data)
         if (data.length == 0) {
           this.haveDiscuss = 0;
         }
       })
   }
+
   postDiscuss(discuss: string): void {
-    if (discuss) {
-      this.http.post<any>(this.userlogin,
-        { "player":this.player, "user": this.userdata.id,
-        "date":this.player, "context": discuss })
+    if (discuss && discuss.length <= 255) {
+      this.http.post<any>(this.postdiscuss,
+        {
+          "player": this.player.id, "user": this.userdata.id,
+          "date": '0', "context": discuss
+        })
         .subscribe(rawdata => {
-          localStorage.setItem("token", rawdata.token);
-          this.cookielogin()
+          this.discuss = '',
+          this.panelOpenState = false,
+          this.getPlayer()
+          // console.log(rawdata)
         });
+      // this.router.navigateByUrl(`/home`);
+      // this.router.navigateByUrl(`/discuss(popup:dddplayer/${this.playername})`);
+
     }
+    else {
+      this.openDialog()
+    }
+    this.getPlayer()
   }
-  // onSubmit() {
-  //   if (!this.email?.errors && !this.password?.errors) {
-  //     this.http.post<any>(this.userlogin,
-  //       { "email": this.loginForm.value.email, "password": this.loginForm.value.password })
-  //       .subscribe(rawdata => {
 
-  //         // console.log('123', rawdata, this.isActive);
-  //         localStorage.setItem("token", rawdata.token);
-  //         this.cookielogin()
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogContentExampleDialog);
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log(`Dialog result: ${result}`);
+    // });
+  }
 
-  //       });
-  //   }
-  // }
+  deleteDiscuss(discussid: number): void {
+    const url = this.deletediscuss + `?id=${discussid}`
+    this.http.put<any>(url, {})
+      .subscribe(rawdata => {
+        // console.log(rawdata),
+        this.getPlayer()
+      });
 
-  // getPlayerVideos(): void {
-  //   this.route.paramMap.pipe(
-  //     switchMap((params: ParamMap) =>{
-  //       this.playername = params.get("name")!
-  //       // console.log("params.get('name')=",params.get("name"))
-  //       this.pictureSrc = `assets/image/${this.playername}.png`;
-  //       return this.VideolistService.getPlayerVideos(params.get("name")!);
-  //     }
-  //       ))
-  //     // this.VideolistService.getPlayerVideos(this._player?.name)
-  //     .subscribe(rawdata => {
-  //       this.rawdata = rawdata;
-  //       this.dataSource = new MatTableDataSource(this.rawdata);
-  //       this.dataSource.paginator = this.paginator;
-  //       // console.log(rawdata)
-  //     });
-  // }
+    // this.router.navigateByUrl(`/home`);
+    // this.router.navigateByUrl(`/discuss(popup:dddplayer/${this.playername})`);
+  }
+
   cookielogin(): void {
     this.LoginService.getLoginStatus()
       .subscribe(userdata => {
         this.userdata.id = userdata.id;
-        // this.isActive = userdata.is_active;
         this.userdata.is_active = userdata.is_active;
         this.userdata.name = userdata.name;
         this.userdata.email = userdata.email;
         this.userdata.item = userdata.item;
-        this.router.navigateByUrl('/home');
+
       })
   }
 
@@ -150,3 +155,10 @@ export class DiscussMainComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }
+
+@Component({
+  selector: 'dialog-content-example-dialog',
+  templateUrl: 'dialog-content-example-dialog.html',
+  styleUrls: ['./discuss-main.component.css']
+})
+export class DialogContentExampleDialog { }

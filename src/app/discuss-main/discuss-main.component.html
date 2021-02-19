@@ -21,7 +21,10 @@
         <div style="overflow:auto;height: 100%;width: 100%;">
             <div *ngIf="!haveDiscuss" class="discussNotFound">
                 <div class="buttondiv">
-                    <mat-accordion>
+                    <div *ngIf="!userdata.id" class="notlogin">
+                        <a href=""><strong>登录发表评论</strong></a>
+                    </div>
+                    <mat-accordion *ngIf="userdata.id">
                         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                             <mat-expansion-panel-header>
                                 <mat-panel-title>
@@ -32,11 +35,7 @@
                                 <mat-label>您的评论</mat-label>
                                 <textarea matInput [(ngModel)]="discuss"></textarea>
                             </mat-form-field>
-                            <!-- <mat-form-field class="example-full-width">
-                                <mat-label>您的评论</mat-label>
-                                <textarea matInput placeholder="针不戳..."></textarea>
-                            </mat-form-field> -->
-                            <button mat-button color="primary">发表</button>
+                            <button mat-button color="primary" (click)="postDiscuss(discuss)">发表</button>
                         </mat-expansion-panel>
                     </mat-accordion>
                 </div>
@@ -44,7 +43,10 @@
             </div>
             <div *ngIf=haveDiscuss>
                 <div class="buttondiv">
-                    <mat-accordion>
+                    <div *ngIf="!userdata.id" class="notlogin">
+                        <a href=""><strong>登录发表评论</strong></a>
+                    </div>
+                    <mat-accordion *ngIf="userdata.id">
                         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                             <mat-expansion-panel-header>
                                 <mat-panel-title>
@@ -54,8 +56,10 @@
                             <mat-form-field appearance="outline">
                                 <mat-label>您的评论</mat-label>
                                 <textarea matInput [(ngModel)]="discuss"></textarea>
+
                             </mat-form-field>
-                            <button mat-button color="primary">发表</button>
+                            <button mat-button color="primary" (click)="postDiscuss(discuss)">发表</button>
+                            <p></p>
                         </mat-expansion-panel>
                     </mat-accordion>
                 </div>
@@ -67,15 +71,16 @@
                                     <div class="discusstitleID">
                                         <strong>{{element.user}}</strong>
                                     </div>
-                                    <div>
-                                        {{element.date}}
+                                    <div class="discussdate">
+                                        {{element.date*1000 | date:'MM-dd HH:mm'}}
                                     </div>
                                 </div>
                                 <div class="discussbody">
-                                    {{element.context}}
+                                    <p>{{element.context}}</p>  
                                 </div>
                                 <div class="replaybutton">
-                                    <a style="display: block;">回复</a>
+                                    <a style="display: block;padding-right: 3px;">回复</a>
+                                    <a *ngIf='element.userid == userdata.id' (click)='deleteDiscuss(element.id)'>删除</a>
                                 </div>
                             </div>
                         </td>

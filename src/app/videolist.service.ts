@@ -14,6 +14,9 @@ export class VideolistService {
   private winprobability = 'http://127.0.0.1:8000/getWinprobability1';  // URL to web api
   private playerdata = 'http://localhost:8000/getPlayerData';
   private playerdiscuss = 'http://localhost:8000/getDiscussByPlayer';
+  private userdiscuss = 'http://localhost:8000/getDiscussByUser';
+
+  
   // 服务器版本
   // private playersUrl = '/getPlayers';  // URL to web api
   // private playerVideosUrl = '/getPlayersVideo';  // URL to web api
@@ -77,6 +80,12 @@ export class VideolistService {
     return this.http.get<Discuss[]>(this.playerdiscuss,{ params: { player: player }})
       .pipe(
         catchError(this.handleError<Discuss[]>('getdiscuss',[]))
+      );
+  }
+  getdiscussByUser(user:string): Observable<Discuss[]> {
+    return this.http.get<Discuss[]>(this.userdiscuss,{ params: { userid: user }})
+      .pipe(
+        catchError(this.handleError<Discuss[]>('getdiscussbyuser',[]))
       );
   }
   // getLoginStatus(): Observable<Userdata> {

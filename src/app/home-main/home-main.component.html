@@ -1,2 +1,34 @@
-<p>home-main works!</p>
-<button (click)="logout()">123</button>
+<div class="usertable">
+    <ul>
+        <li>我的名字：{{userdata.name}}</li>
+        <li>我的邮箱：{{userdata.email}}</li>
+    </ul>
+    <button mat-button color="primary" class="size" (click)="logout()">登出</button>
+</div>
+<div class="userdata">
+    <table mat-table [dataSource]="dataSource" class="example-table">
+        <ng-container matColumnDef="name">
+            <td class="tableitem" mat-cell *matCellDef="let element">
+                <div class="discussItem">
+                    <div class="discussbody">
+                        <p>{{element.context}}</p>
+                    </div>
+                    <div class="active">
+                        <div>
+                            <div class="discusstitleID">
+                                {{element.player}}
+                            </div>
+                            <div class="discussdate">
+                                {{element.date*1000 | date:'MM-dd HH:mm'}}
+                            </div>
+                        </div>
+                        <div class="replaybutton">
+                            <a (click)='deleteDiscuss(element.id)'>删除</a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+        <tr style="padding: 0%;" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
