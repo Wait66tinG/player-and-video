@@ -131,7 +131,7 @@ export class DiscussMainComponent implements OnInit {
     this.http.put<any>(url, {})
       .subscribe(rawdata => {
         // console.log(rawdata),
-        this.getPlayer()
+        // this.getPlayer()
       });
 
     // this.router.navigateByUrl(`/home`);

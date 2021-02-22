@@ -23,6 +23,7 @@ import { HomeComponent } from './home/home.component';
 import { HomeMainComponent } from './home-main/home-main.component';
 import { DiscussComponent } from './discuss/discuss.component';
 import { DiscussMainComponent } from './discuss-main/discuss-main.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 // registerLocaleData(zh);
 
@@ -41,6 +42,7 @@ import { DiscussMainComponent } from './discuss-main/discuss-main.component';
     HomeMainComponent,
     DiscussComponent,
     DiscussMainComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

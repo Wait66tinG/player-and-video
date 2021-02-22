@@ -12,7 +12,9 @@ import { HomeMainComponent } from './home-main/home-main.component';
 import { AuthGuard } from './auth.guard';
 import { DiscussComponent } from './discuss/discuss.component';
 import { DiscussMainComponent } from './discuss-main/discuss-main.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 const routes: Routes = [
+  // { path: '**', component: PageNotFoundComponent },
   {
     path: 'player',
     component: PlayersComponent
